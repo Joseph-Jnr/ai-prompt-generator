@@ -1,33 +1,53 @@
-const NewPrompt = () => {
+'use client'
+
+import { useState } from 'react'
+import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
+import { Form } from '@components'
+
+const CreatePrompt = () => {
+  const router = useRouter()
+  const { data: session } = useSession()
+
+  const [submitting, setSubmitting] = useState(false)
+  const [post, setPost] = useState({
+    prompt: '',
+    tag: '',
+  })
+
+  const createPrompt = async (e) => {
+    e.preventDefault()
+    setSubmitting(true)
+
+    try {
+      const res = await fetch('/api/prompt/new', {
+        method: 'POST',
+        body: JSON.stringify({
+          prompt: post.prompt,
+          userId: session?.user.id,
+          tag: post.tag,
+        }),
+      })
+
+      if (res.ok) {
+        router.push('/')
+      }
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setSubmitting(false)
+    }
+  }
+
   return (
-    <section>
-      <div className='profile_wrap flex flex-col flex-center text-center'>
-        <h1 className='text-xl font-bold'>Create a prompt</h1>
-      </div>
-
-      <div className='my-10 p-3 bg-gray-200 border border-gray-300 rounded-lg w-96'>
-        <div className='prompt_input my-5'>
-          <h2 className='font-bold'>Prompt</h2>
-          <textarea className='text-sm border border-gray-400 p-2 rounded-md text-slate-600 bg-transparent outline-none mt-2 w-full'></textarea>
-        </div>
-
-        <div className='prompt_input my-5'>
-          <h2 className='font-bold'>
-            Tags <small>(#web)</small>
-          </h2>
-          <input
-            type='text'
-            className='text-sm border border-gray-400 p-2 rounded-md text-slate-600 bg-transparent outline-none mt-2 w-full'
-          />
-        </div>
-
-        <div className='prompt_btn flex gap-4'>
-          <button className='black_btn'>Create</button>
-          <button className='outline_btn'>Cancel</button>
-        </div>
-      </div>
-    </section>
+    <Form
+      type='Create'
+      post={post}
+      setPost={setPost}
+      submitting={submitting}
+      handleSubmit={createPrompt}
+    />
   )
 }
 
-export default NewPrompt
+export default CreatePrompt
