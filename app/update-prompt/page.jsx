@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
-
 import Form from '@components/Form'
+import Swal from 'sweetalert2'
 
 const UpdatePrompt = () => {
   const router = useRouter()
@@ -44,6 +44,12 @@ const UpdatePrompt = () => {
 
       if (response.ok) {
         router.push('/')
+        Swal.fire({
+          title: 'Success!',
+          text: 'Your prompt has been updated.',
+          icon: 'success',
+          confirmButtonColor: '#FF5722',
+        })
       }
     } catch (error) {
       console.log(error)

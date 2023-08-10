@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { Form } from '@components'
+import Swal from 'sweetalert2'
 
 const CreatePrompt = () => {
   const router = useRouter()
@@ -31,6 +32,12 @@ const CreatePrompt = () => {
 
       if (res.ok) {
         router.push('/')
+        Swal.fire({
+          title: 'Great!',
+          text: 'Your prompt was created successfully.',
+          icon: 'success',
+          confirmButtonColor: '#FF5722',
+        })
       }
     } catch (error) {
       console.log(error)
