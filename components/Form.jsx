@@ -21,7 +21,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
 
         <div className='prompt_input'>
           <h2 className='font-bold'>
-            Tags <small>(#web)</small>
+            Tags <small>(webdev)</small>
           </h2>
           <p className='text-xs my-2 flex gap-2'>
             <IconInfoCircle size={15} />{' '}
