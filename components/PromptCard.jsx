@@ -32,7 +32,7 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
   const tagsArray = post.tag.split(' ')
 
   return (
-    <div className='my-20'>
+    <div className='prompt_card'>
       <div className='glassmorphism'>
         <div className='flex gap-3 flex-start'>
           <Image
@@ -41,7 +41,7 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
             width={30}
             height={30}
           />
-          <div className='details'>
+          <div className='details w-full'>
             <div className='prompt_header'>
               <div className='user-info'>
                 <h1 className='font-bold capitalize'>
@@ -52,10 +52,7 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
               <div className='flex-center gap-4'>
                 {session?.user.id === post.creator._id &&
                   pathName === '/profile' && (
-                    <div
-                      className='edit_post cursor-pointer'
-                      onClick={handleEdit}
-                    >
+                    <div className='edit_prompt' onClick={handleEdit}>
                       <IconEdit color='green' stroke={1} size={20} />
                     </div>
                   )}
@@ -63,7 +60,7 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
                 <div className='icon' onClick={handleCopy}>
                   <Image
                     src={copied === post.prompt ? TickIcon : CopyIcon}
-                    className='cursor-pointer'
+                    className='copy_prompt'
                   />
                 </div>
               </div>
