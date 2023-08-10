@@ -7,6 +7,17 @@ import { CopyIcon, TickIcon } from '@public/assets'
 import Image from 'next/image'
 import { IconEdit, IconTrash } from '@tabler/icons-react'
 
+const Tag = ({ tag }) => {
+  return (
+    <div
+      className='rounded-full bg-gray-200 border border-gray-300 text-black p-2 text-xs'
+      onClick={() => handleTagClick && handleTagClick(tag)}
+    >
+      <span>#{tag}</span>
+    </div>
+  )
+}
+
 const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
   const { data: session } = useSession()
   const pathName = usePathname()
@@ -18,6 +29,8 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
     navigator.clipboard.writeText(post.prompt)
     setTimeout(() => setCopied(''), 3000)
   }
+
+  const tagsArray = post.tag.split(' ')
 
   return (
     <div className='my-20'>
@@ -62,12 +75,9 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
 
             <div className='tags mt-7'>
               <div className='flex flex-start gap-2'>
-                <div
-                  className='rounded-full bg-gray-200 border border-gray-300 text-black p-2 text-xs'
-                  onClick={() => handleTagClick && handleTagClick(post.tag)}
-                >
-                  <span>#{post.tag}</span>
-                </div>
+                {tagsArray.map((singleTag, index) => (
+                  <Tag key={index} tag={singleTag} />
+                ))}
               </div>
             </div>
 
