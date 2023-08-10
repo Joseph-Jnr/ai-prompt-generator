@@ -4,7 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import { signIn, signOut, useSession, getProviders } from 'next-auth/react'
-import { GoogleIcon, Logo, NextIcon } from '@public/assets'
+import { GoogleIcon, Logo } from '@public/assets'
 import { IconLogout, IconUser } from '@tabler/icons-react'
 
 const Nav = () => {
