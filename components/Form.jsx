@@ -4,26 +4,22 @@ import Link from 'next/link'
 const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
   return (
     <section>
-      <div className='profile_wrap flex flex-col flex-center text-center'>
-        <h1 className='text-2xl font-extrabold'>{type} prompt</h1>
+      <div className='form_wrap'>
+        <h1>{type} prompt</h1>
       </div>
 
-      <form
-        onSubmit={handleSubmit}
-        className='my-10 p-3 bg-gray-200 border border-gray-300 rounded-lg w-96'
-      >
-        <div className='prompt_input my-5'>
+      <form onSubmit={handleSubmit} className='prompt_form'>
+        <div className='prompt_input'>
           <h2 className='font-bold'>Prompt</h2>
           <textarea
             value={post.prompt}
             onChange={(e) => setPost({ ...post, prompt: e.target.value })}
             placeholder='Write prompt here'
-            className='text-sm border border-gray-400 p-2 rounded-md text-slate-600 bg-transparent outline-none mt-2 w-full'
             required
           ></textarea>
         </div>
 
-        <div className='prompt_input my-5'>
+        <div className='prompt_input'>
           <h2 className='font-bold'>
             Tags <small>(#web)</small>
           </h2>
@@ -36,7 +32,6 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
           <input
             value={post.tag}
             onChange={(e) => setPost({ ...post, tag: e.target.value })}
-            className='text-sm border border-gray-400 p-2 rounded-md text-slate-600 bg-transparent outline-none mt-2 w-full'
             required
           />
         </div>

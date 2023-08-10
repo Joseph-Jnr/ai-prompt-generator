@@ -7,12 +7,11 @@ import { CopyIcon, TickIcon } from '@public/assets'
 import Image from 'next/image'
 import { IconEdit, IconTrash } from '@tabler/icons-react'
 
-const Tag = ({ tag }) => {
+const Tag = ({ tag, tagClickAction }) => {
+  const handleTagClickAction = () => tagClickAction && tagClickAction(tag)
+
   return (
-    <div
-      className='rounded-full bg-gray-200 border border-gray-300 text-black p-2 text-xs'
-      onClick={() => handleTagClick && handleTagClick(tag)}
-    >
+    <div className='prompt_tag' onClick={handleTagClickAction}>
       <span>#{tag}</span>
     </div>
   )
@@ -43,7 +42,7 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
             height={30}
           />
           <div className='details'>
-            <div className='header flex flex-between items-center'>
+            <div className='prompt_header'>
               <div className='user-info'>
                 <h1 className='font-bold capitalize'>
                   {post.creator.username}
@@ -69,14 +68,12 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
                 </div>
               </div>
             </div>
-            <div className='description text-sm mt-5 text-slate-700'>
-              {post.prompt}
-            </div>
+            <div className='prompt_desc'>{post.prompt}</div>
 
             <div className='tags mt-7'>
               <div className='flex flex-start gap-2'>
-                {tagsArray.map((singleTag, index) => (
-                  <Tag key={index} tag={singleTag} />
+                {tagsArray.map((tag, index) => (
+                  <Tag key={index} tag={tag} tagClickAction={handleTagClick} />
                 ))}
               </div>
             </div>
@@ -84,10 +81,7 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
             {session?.user.id === post.creator._id &&
               pathName === '/profile' && (
                 <div className='flex flex-end mt-3'>
-                  <div
-                    className='delete_post cursor-pointer bg-red-100 hover:bg-red-200 p-2 rounded'
-                    onClick={handleDelete}
-                  >
+                  <div className='delete_prompt' onClick={handleDelete}>
                     <IconTrash color='red' stroke={1} size={20} />
                   </div>
                 </div>

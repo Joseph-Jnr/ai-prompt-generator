@@ -7,7 +7,7 @@ const Profile = ({ name, desc, data, handleEdit, handleDelete }) => {
 
   return (
     <section className='w-full'>
-      <div className='profile_wrap flex-center flex-col text-center gap-4'>
+      <div className='profile_wrap'>
         <div className='profile_image'>
           <Image
             src={session?.user.image}
@@ -17,8 +17,8 @@ const Profile = ({ name, desc, data, handleEdit, handleDelete }) => {
           />
         </div>
         <div className='profile_details'>
-          <h1 className='font-bold text-xl orange_gradient'>{name}</h1>
-          <p className='text-slate-500 text-sm'>{desc}</p>
+          <h1>{name}</h1>
+          <p>{desc}</p>
         </div>
       </div>
 

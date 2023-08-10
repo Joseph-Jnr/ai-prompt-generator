@@ -168,3 +168,61 @@
 .flex-between {
   @apply flex justify-between items-center;
 }
+
+/* Form */
+.form_wrap {
+  @apply flex flex-col flex-center text-center;
+}
+
+.form_wrap h1 {
+  @apply text-2xl font-extrabold;
+}
+
+.prompt_form {
+  @apply my-10 p-3 bg-gray-200 border border-gray-300 rounded-lg w-96;
+}
+
+.prompt_input {
+  @apply my-5;
+}
+
+.prompt_input textarea {
+  @apply text-sm border border-gray-400 p-2 rounded-md text-slate-600 bg-transparent outline-none mt-2 w-full;
+}
+
+.prompt_input input {
+  @apply text-sm border border-gray-400 p-2 rounded-md text-slate-600 bg-transparent outline-none mt-2 w-full;
+}
+/* Form end */
+
+/* Prompt */
+.prompt_header {
+  @apply flex flex-between items-center;
+}
+
+.prompt_desc {
+  @apply text-sm mt-5 text-slate-700;
+}
+
+.prompt_tag {
+  @apply rounded-full bg-gray-200 border border-gray-300 text-black p-2 text-xs cursor-pointer;
+}
+
+.delete_prompt {
+  @apply cursor-pointer bg-red-100 hover:bg-red-200 p-2 rounded;
+}
+/* Prompt end */
+
+/* Profile */
+.profile_wrap {
+  @apply flex-center flex-col text-center gap-4;
+}
+
+.profile_details h1 {
+  @apply font-bold text-xl orange_gradient;
+}
+
+.profile_details p {
+  @apply text-slate-500 text-sm;
+}
+/* Profile end */
