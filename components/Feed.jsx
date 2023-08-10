@@ -1,49 +1,54 @@
-import { CopyIcon, NextIcon } from '@public/assets'
-import Image from 'next/image'
-import React from 'react'
+'use client'
+
+import { useState, useEffect } from 'react'
+import PromptCard from './PromptCard'
+
+const PromptCardList = ({ data, handleTagClick }) => {
+  return (
+    <div className='prompt_list'>
+      {data.map((post) => (
+        <PromptCard
+          key={post._id}
+          post={post}
+          handleTagClick={handleTagClick}
+        />
+      ))}
+    </div>
+  )
+}
 
 const Feed = () => {
+  const [searchText, setSearchText] = useState('')
+  const [posts, setPosts] = useState([])
+
+  const handleSearch = (e) => {}
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const response = await fetch('/api/prompt')
+      const data = await response.json()
+
+      setPosts(data)
+    }
+
+    fetchPosts()
+  }, [])
+
   return (
-    <div className='my-20'>
-      <div className='glassmorphism'>
-        <div className='flex gap-3 flex-start'>
-          <Image src={NextIcon} width={30} />
-          <div className='details'>
-            <div className='header flex flex-between items-center'>
-              <div className='user-info'>
-                <h1 className='font-bold'>Joseph Jnr</h1>
-                <p className='text-sm text-slate-500'>
-                  josephnwobodo1@gmail.com
-                </p>
-              </div>
-              <div className='icon'>
-                <Image src={CopyIcon} className='cursor-pointer' />
-              </div>
-            </div>
-            <div className='description text-sm mt-5 text-slate-700'>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis
-              magnam natus reprehenderit culpa laudantium vel aliquam obcaecati.
-            </div>
+    <section className='feed'>
+      <form className='relative w-full flex-center'>
+        <input
+          type='text'
+          className='search_input peer'
+          placeholder='Search'
+          value={searchText}
+          onChange={handleSearch}
+          required
+        />
+      </form>
 
-            <div className='tags mt-7'>
-              <div className='flex flex-start gap-2'>
-                <div className='rounded-full bg-gray-200 border border-gray-300 text-black p-2 text-xs'>
-                  #webdevelopment
-                </div>
-
-                <div className='rounded-full bg-gray-200 border border-gray-300 text-black p-2 text-xs'>
-                  #javascript
-                </div>
-
-                <div className='rounded-full bg-gray-200 border border-gray-300 text-black p-2 text-xs'>
-                  #api
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+      <PromptCardList data={[posts]} handleTagClick={() => {}} />
+    </section>
   )
 }
 
