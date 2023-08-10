@@ -117,10 +117,6 @@
   @apply rounded-xl border border-gray-200 bg-white/20 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur p-5;
 }
 
-.prompt_layout {
-  @apply space-y-6 py-8 sm:columns-2 sm:gap-6 xl:columns-3;
-}
-
 /* Feed Component */
 .feed {
   @apply mt-16 mx-auto w-full max-w-xl flex justify-center items-center flex-col gap-2;
@@ -196,6 +192,10 @@
 /* Form end */
 
 /* Prompt */
+.prompt_list {
+  @apply mt-10 w-full max-w-xl mx-auto;
+}
+
 .prompt_header {
   @apply flex flex-between items-center;
 }
@@ -210,6 +210,18 @@
 
 .delete_prompt {
   @apply cursor-pointer bg-red-100 hover:bg-red-200 p-2 rounded;
+}
+
+.no_prompt {
+  @apply bg-yellow-100 py-16 flex-center flex-col rounded-lg border border-yellow-200 w-full;
+}
+
+.no_prompt .icon_info {
+  @apply text-yellow-600 mb-3;
+}
+
+.no_prompt .text {
+  @apply text-yellow-600 font-semibold text-lg;
 }
 /* Prompt end */
 
