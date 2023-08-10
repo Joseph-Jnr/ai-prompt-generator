@@ -8,6 +8,7 @@ import Image from 'next/image'
 import { Profile } from '@components'
 
 const Profiles = () => {
+  const router = useRouter()
   const { data: session } = useSession()
   const [posts, setPosts] = useState([])
 
@@ -22,13 +23,15 @@ const Profiles = () => {
     if (session?.user.id) fetchPosts()
   }, [])
 
-  const handleEdit = () => {}
-  const handleDelete = async () => {}
+  const handleEdit = (post) => {
+    router.push(`/update-prompt?id=${post._id}`)
+  }
+  const handleDelete = async (post) => {}
 
   return (
     <Profile
-      name='My'
-      desc='Welcome to your personalized profile page'
+      name='Joseph Jnr'
+      desc='This is a personalized profile page'
       data={posts}
       handleEdit={handleEdit}
       handleDelete={handleDelete}
