@@ -1,10 +1,11 @@
+import { IconInfoCircle } from '@tabler/icons-react'
 import Link from 'next/link'
 
 const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
   return (
     <section>
       <div className='profile_wrap flex flex-col flex-center text-center'>
-        <h1 className='text-xl font-bold'>{type} prompt</h1>
+        <h1 className='text-2xl font-extrabold'>{type} prompt</h1>
       </div>
 
       <form
@@ -26,6 +27,12 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
           <h2 className='font-bold'>
             Tags <small>(#web)</small>
           </h2>
+          <p className='text-xs my-2 flex gap-2'>
+            <IconInfoCircle size={15} />{' '}
+            <span className='orange_gradient'>
+              Use space to add multiple tags
+            </span>
+          </p>
           <input
             value={post.tag}
             onChange={(e) => setPost({ ...post, tag: e.target.value })}
