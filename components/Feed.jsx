@@ -2,17 +2,22 @@
 
 import { useState, useEffect } from 'react'
 import PromptCard from './PromptCard'
+import NoPrompt from './NoPrompt'
 
 const PromptCardList = ({ data, handleTagClick }) => {
   return (
     <div className='prompt_list'>
-      {data.map((post) => (
-        <PromptCard
-          key={post._id}
-          post={post}
-          handleTagClick={handleTagClick}
-        />
-      ))}
+      {data.length > 0 ? (
+        data.map((post) => (
+          <PromptCard
+            key={post._id}
+            post={post}
+            handleTagClick={handleTagClick}
+          />
+        ))
+      ) : (
+        <NoPrompt />
+      )}
     </div>
   )
 }

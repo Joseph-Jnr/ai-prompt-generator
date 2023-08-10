@@ -1,6 +1,7 @@
 import { useSession } from 'next-auth/react'
 import Image from 'next/image'
 import PromptCard from './PromptCard'
+import NoPrompt from './NoPrompt'
 
 const Profile = ({ name, desc, data, handleEdit, handleDelete }) => {
   const { data: session } = useSession()
@@ -22,15 +23,19 @@ const Profile = ({ name, desc, data, handleEdit, handleDelete }) => {
         </div>
       </div>
 
-      <div className='mt-10 prompt_list'>
-        {data.map((post) => (
-          <PromptCard
-            key={post._id}
-            post={post}
-            handleEdit={() => handleEdit && handleEdit(post)}
-            handleDelete={() => handleDelete && handleDelete(post)}
-          />
-        ))}
+      <div className='prompt_list'>
+        {data.length > 0 ? (
+          data.map((post) => (
+            <PromptCard
+              key={post._id}
+              post={post}
+              handleEdit={() => handleEdit && handleEdit(post)}
+              handleDelete={() => handleDelete && handleDelete(post)}
+            />
+          ))
+        ) : (
+          <NoPrompt />
+        )}
       </div>
     </section>
   )
